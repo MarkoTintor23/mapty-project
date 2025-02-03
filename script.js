@@ -88,7 +88,6 @@ class App {
   _loadMap(position) {
     const { latitude } = position.coords;
     const { longitude } = position.coords;
-    console.log(`https://www.google.rs/maps/@${latitude},${longitude}`);
 
     const coords = [latitude, longitude];
     this.#map = L.map('map').setView(coords, this.#mapZoomLevel);
@@ -239,7 +238,6 @@ class App {
   }
   _moveToPopup(e) {
     const workoutEl = e.target.closest('.workout');
-    console.log(workoutEl);
 
     if (!workoutEl) return;
 
@@ -265,6 +263,21 @@ class App {
       this._renderWorkout(work);
     });
   }
+
+  reset() {
+    localStorage.removeItem('workouts');
+    location.reload();
+  }
 }
 
 const app = new App();
+
+function digits(num) {
+  // Write your code below this line
+  let count = 0;
+  while (num != 0) {
+    num = Math.floor(num / 10);
+    count++;
+  }
+  console.log(count);
+}
